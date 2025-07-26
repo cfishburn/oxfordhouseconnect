@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
 import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import RequireAuth from './components/RequireAuth.jsx';
@@ -7,7 +8,10 @@ import RequireAuth from './components/RequireAuth.jsx';
 export default function App() {
   return (
     <Routes>
+      {/* Public route */}
       <Route path="/login" element={<Login />} />
+
+      {/* Protected route */}
       <Route
         path="/dashboard"
         element={
@@ -16,8 +20,9 @@ export default function App() {
           </RequireAuth>
         }
       />
-      {/* Redirect all unknown routes to dashboard */}
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+
+      {/* Catch-all: redirect anything else (including “/”) to /login */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }
