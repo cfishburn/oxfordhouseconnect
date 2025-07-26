@@ -1,8 +1,8 @@
+import logo from '../assets/oxford-logo.png';
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { supabase } from '../supabase.js';
 import { useAuth } from '../providers/AuthProvider.jsx';
-import logo from '../assets/oxford-logo.png';
 
 export default function Login() {
   /* auth redirect */
