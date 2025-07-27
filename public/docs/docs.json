@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Oxford House Manual",
+    "filename": "Oxford House Manual copy.pdf",
+    "role": "President",
+    "description": "The official guidebook for Oxford House operations."
+  },
+  {
+    "title": "House Officer Positions",
+    "filename": "House Officer Positions.pdf",
+    "role": "President",
+    "description": "Duties and expectations of each elected officer in the house."
+  },
+  {
+    "title": "Oxford House World Council Manual",
+    "filename": "Oxford House World...ncil Manual copy.pdf",
+    "role": "President",
+    "description": "Documentation for international Oxford House structure and governance."
+  },
+  {
+    "title": "Comptroller House Report",
+    "filename": "Comptroller House Report copy.pdf",
+    "role": "Comptroller",
+    "description": "Weekly Comptroller summary for house finances."
+  },
+  {
+    "title": "Comptroller Individual Report",
+    "filename": "Comptroller Individual Report copy.pdf",
+    "role": "Comptroller",
+    "description": "Individual Comptroller expense tracking."
+  },
+  {
+    "title": "Audit Form",
+    "filename": "Audit Form copy.pdf",
+    "role": "Comptroller",
+    "description": "Form used for internal auditing and accountability."
+  },
+  {
+    "title": "Treasurer Report",
+    "filename": "Treasurer Report copy.pdf",
+    "role": "Treasurer",
+    "description": "Weekly financial tracking report used by house treasurer."
+  },
+  {
+    "title": "Coordinator Report",
+    "filename": "Coordinator Report copy.pdf",
+    "role": "Coordinator",
+    "description": "Responsibilities and reporting template for house coordinators."
+  },
+  {
+    "title": "Meeting Agenda",
+    "filename": "Meeting Agenda copy.pdf",
+    "role": "Secretary",
+    "description": "Suggested weekly meeting agenda for house operations."
+  },
+  {
+    "title": "Meeting Minutes",
+    "filename": "Meeting Minutes copy.pdf",
+    "role": "Secretary",
+    "description": "Form to record official minutes from each house meeting."
+  },
+  {
+    "title": "Oxford House Chapter Manual",
+    "filename": "Oxford House Chapter Manual copy.pdf",
+    "role": "Literature",
+    "description": "Manual for chapter-level coordination among Oxford Houses."
+  },
+  {
+    "title": "Oxford House Association Manual",
+    "filename": "Oxford House Association Manual copy.pdf",
+    "role": "Literature",
+    "description": "Guidance for regional or area-level Oxford House associations."
+  }
+]

@@ -1,50 +1,56 @@
-import logo from '../assets/oxford-logo.png';
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { supabase } from '../supabase.js';
-import { useAuth } from '../providers/AuthProvider.jsx';
+import { useSession } from '@supabase/auth-helpers-react';
+import supabase from '../supabase.js';
+import logo from '../assets/oxford-logo.png';
 
 export default function Login() {
-  /* auth redirect */
-  const { session } = useAuth();
-  if (session) return <Navigate to="/dashboard" replace />;
+  const session = useSession();
 
-  /* local form state */
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  /* submit handler */
+  // Redirect if user is already logged in
+  if (session) return <Navigate to="/dashboard" replace />;
+
   async function handleSubmit(e) {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) setError(error.message);
+    setError('');
+    setLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setError(error.message);
+    }
+
+    setLoading(false);
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex flex-col">
-      {/* Top nav / branding */}
+      {/* Header */}
       <header className="w-full shadow-sm bg-white">
-        <div className="max-w-7xl mx-auto flex items-center gap-3 p-4">
-          <img src={logo} alt="Oxford Houses logo" className="h-10 w-10" />
-          <span className="text-xl font-semibold text-blue-800">Oxford Houses</span>
+        <div className="max-w-7xl mx-auto flex justify-center items-center gap-3 p-4">
+          <img src={logo} alt="Oxford House Connection logo" className="h-10 w-10" />
+          <span className="text-2xl font-semibold text-blue-800">Oxford House Connection</span>
         </div>
       </header>
 
-      {/* Hero + form */}
+      {/* Main content */}
       <main className="flex-grow flex items-center justify-center px-4">
         <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6">
           <div className="text-center space-y-1">
-            <h1 className="text-2xl font-bold text-gray-800">
-              Member Login
-            </h1>
-            <p className="text-sm text-gray-500">
-              Welcome to the Oxford Houses Portal
-            </p>
+            <h1 className="text-2xl font-bold text-gray-800">Member Login</h1>
+            <p className="text-sm text-gray-500">Welcome to the Oxford House Connection Portal</p>
           </div>
 
-          {/* form */}
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email Address
@@ -53,10 +59,10 @@ export default function Login() {
                 id="email"
                 type="email"
                 required
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="you@example.com"
               />
             </div>
 
@@ -68,10 +74,10 @@ export default function Login() {
                 id="password"
                 type="password"
                 required
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="••••••••"
               />
             </div>
 
@@ -79,9 +85,10 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition"
+              disabled={loading}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50"
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </button>
 
             <div className="flex items-center justify-between text-xs text-blue-600 mt-2">
@@ -92,9 +99,9 @@ export default function Login() {
         </div>
       </main>
 
-      {/* simple footer */}
+      {/* Footer */}
       <footer className="text-center text-xs text-gray-400 py-4">
-        © {new Date().getFullYear()} Oxford House Inc.
+        © {new Date().getFullYear()} Oxford House Connection Inc.
       </footer>
     </div>
   );

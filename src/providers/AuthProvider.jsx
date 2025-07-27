@@ -1,31 +1,16 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '../supabase.js';
+// src/providers/AuthProvider.jsx
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import { createBrowserClient } from '@supabase/ssr';
 
-const AuthContext = createContext({ session: null, supabase });
+const supabase = createBrowserClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
-export const AuthProvider = ({ children }) => {
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Get initial session and subscribe to changes
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setLoading(false);
-    });
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
-
+export function AuthProvider({ children }) {
   return (
-    <AuthContext.Provider value={{ session, supabase }}>
-      {!loading && children}
-    </AuthContext.Provider>
+    <SessionContextProvider supabaseClient={supabase}>
+      {children}
+    </SessionContextProvider>
   );
-};
-
-export const useAuth = () => useContext(AuthContext);
+}

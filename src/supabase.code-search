@@ -1,0 +1,190 @@
+# Query: supabase
+# ContextLines: 1
+
+79 results - 11 files
+
+.env:
+  1: VITE_SUPABASE_URL=https://xcchovlhodqxqqrinscv.supabase.co
+  2: VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjY2hvdmxob2RxeHFxcmluc2N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0OTU0NDMsImV4cCI6MjA2OTA3MTQ0M30._O5sp7r4ObWgNSlKc74xOtFA2--b1d2Mt7YWQGowpsI
+  3  
+
+.env.example:
+  1: VITE_SUPABASE_URL=<your-supabase-url>
+  2: VITE_SUPABASE_ANON_KEY=<your-supabase-anon-key>
+
+package-lock.json:
+   10        "dependencies": {
+   11:         "@supabase/auth-ui-react": "^0.2.7",
+   12:         "@supabase/supabase-js": "^2.39.1",
+   13          "@tanstack/react-query": "^4.34.0",
+
+  845      },
+  846:     "node_modules/@supabase/auth-js": {
+  847        "version": "2.71.1",
+  848:       "resolved": "https://registry.npmjs.org/@supabase/auth-js/-/auth-js-2.71.1.tgz",
+  849        "integrity": "sha512-mMIQHBRc+SKpZFRB2qtupuzulaUhFYupNyxqDj5Jp/LyPvcWvjaJzZzObv6URtL/O6lPxkanASnotGtNpS3H2Q==",
+
+  851        "dependencies": {
+  852:         "@supabase/node-fetch": "^2.6.14"
+  853        }
+  854      },
+  855:     "node_modules/@supabase/auth-ui-react": {
+  856        "version": "0.2.8",
+  857:       "resolved": "https://registry.npmjs.org/@supabase/auth-ui-react/-/auth-ui-react-0.2.8.tgz",
+  858        "integrity": "sha512-CfN9Zt2t1PMfri8htLCFYYIWho6F15ZvbWICE3RuOZ348z1P15iP6scjxB3704Jbu334Q+ykCQP+UzdnB7cXHQ==",
+
+  871      },
+  872:     "node_modules/@supabase/functions-js": {
+  873        "version": "2.4.5",
+  874:       "resolved": "https://registry.npmjs.org/@supabase/functions-js/-/functions-js-2.4.5.tgz",
+  875        "integrity": "sha512-v5GSqb9zbosquTo6gBwIiq7W9eQ7rE5QazsK/ezNiQXdCbY+bH8D9qEaBIkhVvX4ZRW5rP03gEfw5yw9tiq4EQ==",
+
+  877        "dependencies": {
+  878:         "@supabase/node-fetch": "^2.6.14"
+  879        }
+  880      },
+  881:     "node_modules/@supabase/node-fetch": {
+  882        "version": "2.6.15",
+  883:       "resolved": "https://registry.npmjs.org/@supabase/node-fetch/-/node-fetch-2.6.15.tgz",
+  884        "integrity": "sha512-1ibVeYUacxWYi9i0cf5efil6adJ9WRyZBLivgjs+AUpewx1F3xPi7gLgaASI2SmIQxPoCEjAsLAzKPgMJVgOUQ==",
+
+  892      },
+  893:     "node_modules/@supabase/postgrest-js": {
+  894        "version": "1.19.4",
+  895:       "resolved": "https://registry.npmjs.org/@supabase/postgrest-js/-/postgrest-js-1.19.4.tgz",
+  896        "integrity": "sha512-O4soKqKtZIW3olqmbXXbKugUtByD2jPa8kL2m2c1oozAO11uCcGrRhkZL0kVxjBLrXHE0mdSkFsMj7jDSfyNpw==",
+
+  898        "dependencies": {
+  899:         "@supabase/node-fetch": "^2.6.14"
+  900        }
+  901      },
+  902:     "node_modules/@supabase/realtime-js": {
+  903        "version": "2.11.15",
+  904:       "resolved": "https://registry.npmjs.org/@supabase/realtime-js/-/realtime-js-2.11.15.tgz",
+  905        "integrity": "sha512-HQKRnwAqdVqJW/P9TjKVK+/ETpW4yQ8tyDPPtRMKOH4Uh3vQD74vmj353CYs8+YwVBKubeUOOEpI9CT8mT4obw==",
+
+  907        "dependencies": {
+  908:         "@supabase/node-fetch": "^2.6.13",
+  909          "@types/phoenix": "^1.6.6",
+
+  914      },
+  915:     "node_modules/@supabase/storage-js": {
+  916        "version": "2.7.1",
+  917:       "resolved": "https://registry.npmjs.org/@supabase/storage-js/-/storage-js-2.7.1.tgz",
+  918        "integrity": "sha512-asYHcyDR1fKqrMpytAS1zjyEfvxuOIp1CIXX7ji4lHHcJKqyk+sLl/Vxgm4sN6u8zvuUtae9e4kDxQP2qrwWBA==",
+
+  920        "dependencies": {
+  921:         "@supabase/node-fetch": "^2.6.14"
+  922        }
+  923      },
+  924:     "node_modules/@supabase/supabase-js": {
+  925        "version": "2.52.1",
+  926:       "resolved": "https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.52.1.tgz",
+  927        "integrity": "sha512-IxYljprgl381j4SuFrW4JimjTb59WJ98DqxhMvEOJjpGJWuZ7kwttIWn7E4NBnvkYwZ948zJkJ7dSI6B0oO0Xw==",
+
+  929        "dependencies": {
+  930:         "@supabase/auth-js": "2.71.1",
+  931:         "@supabase/functions-js": "2.4.5",
+  932:         "@supabase/node-fetch": "2.6.15",
+  933:         "@supabase/postgrest-js": "1.19.4",
+  934:         "@supabase/realtime-js": "2.11.15",
+  935:         "@supabase/storage-js": "2.7.1"
+  936        }
+
+package.json:
+  11    "dependencies": {
+  12:     "@supabase/supabase-js": "^2.39.1",
+  13:     "@supabase/auth-ui-react": "^0.2.7",
+  14      "@tanstack/react-query": "^4.34.0",
+
+package.json.save:
+  11    "dependencies": {
+  12:     "@supabase/supabase-js": "^2.39.1",
+  13:     "@supabase/auth-ui-react": "^0.2.7",
+  14      "@sabase/auth-ui-shared": "^0.2.4",
+
+README.md:
+   6  
+   7: This project is built with **React 18** and **Vite** and uses **Tailwind CSS** for styling. It communicates with **Supabase** for authentication and data storage.
+   8  
+
+  10  
+  11: Ensure you have **Node.js** (v16 or later) installed. You should also create a Supabase project and obtain your `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` values.
+  12  
+
+  14  
+  15: 1. Copy `.env.example` to `.env` and populate the Supabase URL and anon key:
+  16  
+
+  18     cp .env.example .env
+  19:    # Then edit `.env` to set your Supabase credentials
+  20     ```
+
+  37  
+  38: This repository is configured for deployment on **Vercel**. When you create a Vercel project linked to this repository, set the environment variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in the Vercel dashboard. Vercel will handle building the project via `npm run build` and serve the production build.
+  39  
+
+src/supabase.js:
+  1: // src/supabase.js
+  2: import { createClient } from '@supabase/supabase-js';
+  3  
+  4: const supabase = createClient(
+  5:   import.meta.env.VITE_SUPABASE_URL,
+  6:   import.meta.env.VITE_SUPABASE_ANON_KEY
+  7  );
+  8  
+  9: export default supabase;
+  10  
+
+src/components/Sidebar.jsx:
+   1  import { Link, useLocation } from 'react-router-dom';
+   2: import { useSupabaseClient } from '@supabase/auth-helpers-react';
+   3  import logo from '../assets/oxford-logo.png';
+
+   5  export default function Sidebar() {
+   6:   const supabase = useSupabaseClient();
+   7    const location = useLocation();
+
+  19    const handleSignOut = async () => {
+  20:     await supabase.auth.signOut();
+  21      window.location.href = '/';
+
+src/pages/Login.jsx:
+   3  import { useAuth } from '../providers/AuthProvider.jsx';
+   4: import supabase from '../supabase.js';
+   5  import logo from '../assets/oxford-logo.png';
+
+  17      setError('');
+  18:     const { error } = await supabase.auth.signInWithPassword({ email, password });
+  19      if (error) setError(error.message);
+
+src/pages/Members.jsx:
+   1  import { useEffect, useState, useCallback } from "react";
+   2: import { supabase } from "../supabase.js";
+   3  import Header from "../components/Header.jsx";
+
+  29    const getMembers = useCallback(async () => {
+  30:     const { data, error } = await supabase.from("Members").select("*");
+  31      if (!error) setMembers(data);
+
+  66      const { error } = editingId
+  67:       ? await supabase.from("Members").update(payload).eq("id", editingId)
+  68:       : await supabase.from("Members").insert(payload);
+  69  
+
+  77      if (!confirm("Delete this member?")) return;
+  78:     await supabase.from("Members").delete().eq("id", id);
+  79      getMembers();
+
+src/providers/AuthProvider.jsx:
+   2  import React, { createContext, useContext, useEffect, useState } from 'react';
+   3: import supabase from '../supabase.js';
+   4  
+
+  13      const getSession = async () => {
+  14:       const { data: { session } } = await supabase.auth.getSession();
+  15        setSession(session);
+
+  21      // Subscribe to auth state changes
+  22:     const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
+  23        setSession(session);
