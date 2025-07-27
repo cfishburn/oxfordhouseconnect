@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import html2pdf from 'html2pdf.js';
 import { createClient } from '@supabase/supabase-js';
 
+// Initialize Supabase client
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -11,55 +12,59 @@ export default function SecretaryPage() {
   const pdfRef = useRef();
 
   const [form, setForm] = useState({
-    meetingDate: '',
-    startTime: '',
-    endTime: '',
-    secretaryName: '',
+    meeting_date: '',
+    start_time: '',
+    end_time: '',
+    secretary_name: '',
     purpose: '',
-    absentMembers: '',
-    excusedMembers: '',
-    presentMembers: '',
-    traditionRead: false,
-    minutesRead: false,
-    treasurerReport: false,
-    comptrollerReport: false,
-    coordinatorReport: false,
-    hsrReport: false,
-    unfinishedBusiness: '',
-    newBusiness: '',
-    checkingBegin: '',
-    checkingEnd: '',
-    savingsBegin: '',
-    savingsEnd: '',
-    totalReceived: '',
-    totalSpent: '',
-    auditReviewed: false,
-    nextAuditDate: '',
-    receiptsReviewed: false,
-    adjournMotion: false,
+    absent_members: '',
+    excused_members: '',
+    present_members: '',
+    tradition_read: false,
+    minutes_read: false,
+    treasurer_report: false,
+    comptroller_report: false,
+    coordinator_report: false,
+    hsr_report: false,
+    receipts_reviewed: false,
+    audit_reviewed: false,
+    adjourn_motion: false,
+    unfinished_business: '',
+    new_business: '',
+    checking_begin: '',
+    checking_end: '',
+    savings_begin: '',
+    savings_end: '',
+    total_received: '',
+    total_spent: '',
+    next_audit_date: ''
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   };
 
   const saveToSupabase = async () => {
-    const { error } = await supabase.from('meeting_minutes').insert([form]);
+    const { data, error } = await supabase.from('meeting_minutes').insert([form]);
     if (error) {
-      alert('Error saving to database');
+      console.error('Supabase insert error:', error);
+      alert(`Error saving to database: ${error.message}`);
     } else {
-      alert('Meeting saved!');
+      alert('Meeting successfully saved to Supabase.');
     }
   };
 
   const exportPDF = () => {
-    html2pdf().from(pdfRef.current).save(`Meeting_Minutes_${form.meetingDate || 'Draft'}.pdf`);
+    html2pdf().from(pdfRef.current).save(`Meeting_Minutes_${form.meeting_date || 'Draft'}.pdf`);
   };
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Secretary - Weekly Meeting Minutes</h1>
         <div className="space-x-2">
           <button onClick={saveToSupabase} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -71,105 +76,105 @@ export default function SecretaryPage() {
         </div>
       </div>
 
-      <form ref={pdfRef} className="space-y-6 bg-white p-6 rounded shadow-md">
-        {/* Basic Info */}
+      <form ref={pdfRef} className="bg-white p-6 rounded shadow space-y-6">
+        {/* Date, Time, Secretary */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label>
             Date of Meeting
-            <input type="date" name="meetingDate" value={form.meetingDate} onChange={handleChange} className="w-full border p-2 rounded" required />
+            <input type="date" name="meeting_date" value={form.meeting_date} onChange={handleChange} className="w-full border p-2 rounded" required />
           </label>
           <label>
             Start Time
-            <input type="time" name="startTime" value={form.startTime} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="time" name="start_time" value={form.start_time} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             End Time
-            <input type="time" name="endTime" value={form.endTime} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="time" name="end_time" value={form.end_time} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Secretary Name
-            <input type="text" name="secretaryName" value={form.secretaryName} onChange={handleChange} className="w-full border p-2 rounded" required />
+            <input type="text" name="secretary_name" value={form.secretary_name} onChange={handleChange} className="w-full border p-2 rounded" required />
           </label>
         </div>
 
-        {/* Roll Call and Attendance */}
+        {/* Roll Call */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label>
             Absent Members
-            <textarea name="absentMembers" value={form.absentMembers} onChange={handleChange} className="w-full border p-2 rounded" />
+            <textarea name="absent_members" value={form.absent_members} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Excused Members
-            <textarea name="excusedMembers" value={form.excusedMembers} onChange={handleChange} className="w-full border p-2 rounded" />
+            <textarea name="excused_members" value={form.excused_members} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Present Members
-            <textarea name="presentMembers" value={form.presentMembers} onChange={handleChange} className="w-full border p-2 rounded" />
+            <textarea name="present_members" value={form.present_members} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
         </div>
 
-        {/* Reports and Sections */}
-        <div className="space-y-2">
+        {/* Checkboxes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {[
-            ['traditionRead', 'Tradition Read'],
-            ['minutesRead', 'Minutes Read'],
-            ['treasurerReport', 'Treasurer Report'],
-            ['comptrollerReport', 'Comptroller Report'],
-            ['coordinatorReport', 'Coordinator Report'],
-            ['hsrReport', 'HSR Report'],
-            ['receiptsReviewed', 'Receipts Reviewed'],
-            ['auditReviewed', 'Audit Reviewed'],
-            ['adjournMotion', 'Adjournment Motion Made'],
+            ['tradition_read', 'Tradition Read'],
+            ['minutes_read', 'Minutes Read'],
+            ['treasurer_report', 'Treasurer Report'],
+            ['comptroller_report', 'Comptroller Report'],
+            ['coordinator_report', 'Coordinator Report'],
+            ['hsr_report', 'HSR Report'],
+            ['receipts_reviewed', 'Receipts Reviewed'],
+            ['audit_reviewed', 'Audit Reviewed'],
+            ['adjourn_motion', 'Adjournment Motion Made']
           ].map(([name, label]) => (
-            <label key={name} className="flex items-center gap-2">
+            <label key={name} className="flex items-center space-x-2">
               <input type="checkbox" name={name} checked={form[name]} onChange={handleChange} />
-              {label}
+              <span>{label}</span>
             </label>
           ))}
         </div>
 
-        {/* Notes */}
+        {/* Business Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label>
             Unfinished Business
-            <textarea name="unfinishedBusiness" value={form.unfinishedBusiness} onChange={handleChange} className="w-full border p-2 rounded" />
+            <textarea name="unfinished_business" value={form.unfinished_business} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             New Business
-            <textarea name="newBusiness" value={form.newBusiness} onChange={handleChange} className="w-full border p-2 rounded" />
+            <textarea name="new_business" value={form.new_business} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
         </div>
 
-        {/* Finance */}
-        <h2 className="text-lg font-semibold mt-6">Finance Section</h2>
+        {/* Financial Section */}
+        <h2 className="text-lg font-semibold pt-4">Finance Section</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label>
             Checking Beginning Balance ($)
-            <input type="number" name="checkingBegin" value={form.checkingBegin} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="number" name="checking_begin" value={form.checking_begin} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Checking Ending Balance ($)
-            <input type="number" name="checkingEnd" value={form.checkingEnd} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="number" name="checking_end" value={form.checking_end} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Savings Beginning Balance ($)
-            <input type="number" name="savingsBegin" value={form.savingsBegin} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="number" name="savings_begin" value={form.savings_begin} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Savings Ending Balance ($)
-            <input type="number" name="savingsEnd" value={form.savingsEnd} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="number" name="savings_end" value={form.savings_end} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Total Received ($)
-            <input type="number" name="totalReceived" value={form.totalReceived} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="number" name="total_received" value={form.total_received} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Total Spent ($)
-            <input type="number" name="totalSpent" value={form.totalSpent} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="number" name="total_spent" value={form.total_spent} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
           <label>
             Next Audit Date
-            <input type="date" name="nextAuditDate" value={form.nextAuditDate} onChange={handleChange} className="w-full border p-2 rounded" />
+            <input type="date" name="next_audit_date" value={form.next_audit_date} onChange={handleChange} className="w-full border p-2 rounded" />
           </label>
         </div>
       </form>
